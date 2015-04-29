@@ -27,3 +27,16 @@ ggplot(tdat, aes(round.group, Twin, color = skill.group, group = skill.group))+
   facet_wrap(~map)+
   scale_y_continuous(labels = function(x) paste0(round(x*100, 2), '%')) +
   labs(x = 'Round Group', y = 'Terrorist Win', color = 'Skill Group')
+
+
+
+# interactive plot:
+
+library(rCharts)
+require(devtools)
+install_github('rCharts', 'ramnathv')
+
+blah = nPlot(Twin ~ round.group, group = "map", data = tdat, type = "multiBarChart")
+
+print(blah)
+
