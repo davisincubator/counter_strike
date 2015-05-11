@@ -36,7 +36,32 @@ library(rCharts)
 require(devtools)
 install_github('rCharts', 'ramnathv')
 
-blah = nPlot(Twin ~ round.group, group = "map", data = tdat, type = "multiBarChart")
+# select maps for plotting inclusion; here we're only looking 
+# at maps we play:
+inc_maps = c('de_dust2', 'de_nuke', 'de_inferno')
+
+# plot terrorist win by round and map:
+blah = nPlot(Twin ~ round.group, group = "map", 
+             data = filter(tdat, map %in% inc_maps), 
+             type = "multiBarChart")
+blah$chart(forceY = c(0, 0.7))
 
 print(blah)
+
+blah$print("chart3")
+
+# plot terrorist win by round and map and skill group
+blah2 = nPlot(Twin ~ map, group = "skill.group", 
+             data = filter(tdat, map %in% inc_maps), 
+             type = "multiBarChart")
+blah2$chart(forceY = c(0, 0.7))
+#blah2$addControls("x", value = "wt", values = names(mtcars))
+print(blah2)
+
+
+
+
+
+
+
 
